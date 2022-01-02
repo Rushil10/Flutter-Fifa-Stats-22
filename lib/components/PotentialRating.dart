@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class PotentialRating extends StatelessWidget {
   final potential;
-  const PotentialRating({Key? key, this.potential}) : super(key: key);
+  final cardWidth;
+  const PotentialRating({Key? key, this.potential, this.cardWidth})
+      : super(key: key);
 
   Color bgColor() {
     if (potential >= 90) {
@@ -29,8 +31,8 @@ class PotentialRating extends StatelessWidget {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Container(
-      width: queryData.size.width * 0.11,
-      height: queryData.size.width * 0.11,
+      width: queryData.size.width * cardWidth,
+      height: queryData.size.width * cardWidth,
       decoration: BoxDecoration(color: bgColor()),
       child: Center(
         child: Text(

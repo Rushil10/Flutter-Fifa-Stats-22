@@ -1,26 +1,17 @@
 import 'package:fifa_stats/utlis/CustomColors.dart';
 import 'package:flutter/material.dart';
 
-class AgeRating extends StatelessWidget {
-  final age;
+class FootDetails extends StatelessWidget {
+  final foot;
   final cardWidth;
-  const AgeRating({Key? key, this.age, this.cardWidth}) : super(key: key);
+  const FootDetails({Key? key, this.cardWidth, this.foot}) : super(key: key);
 
   Color bgColor() {
-    if (age >= 35) {
-      const color = red;
-      return color;
-    } else if (age >= 30) {
+    if (foot == "Left") {
       const color = yellow;
       return color;
-    } else if (age >= 25) {
-      const color = lightGreen;
-      return color;
-    } else if (age >= 20) {
-      const color = green;
-      return color;
     } else {
-      const color = darkGreen;
+      const color = yellow;
       return color;
     }
   }
@@ -35,8 +26,11 @@ class AgeRating extends StatelessWidget {
       decoration: BoxDecoration(color: bgColor()),
       child: Center(
         child: Text(
-          age.toString(),
-          style: TextStyle(fontSize: ratingFont, fontWeight: ratingFontWeight),
+          foot[0].toString(),
+          style: TextStyle(
+              fontSize: ratingFont,
+              color: Colors.black,
+              fontWeight: ratingFontWeight),
         ),
       ),
     );

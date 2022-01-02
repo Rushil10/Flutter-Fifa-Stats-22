@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class OverallRating extends StatelessWidget {
   final overall;
-  const OverallRating({Key? key, this.overall}) : super(key: key);
+  final cardWidth;
+  const OverallRating({Key? key, this.overall, this.cardWidth})
+      : super(key: key);
 
   Color bgColor() {
     if (overall >= 90) {
@@ -29,8 +31,8 @@ class OverallRating extends StatelessWidget {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Container(
-      width: queryData.size.width * 0.11,
-      height: queryData.size.width * 0.11,
+      width: queryData.size.width * cardWidth,
+      height: queryData.size.width * cardWidth,
       decoration: BoxDecoration(color: bgColor()),
       child: Center(
         child: Text(

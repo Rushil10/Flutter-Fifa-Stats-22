@@ -26,3 +26,7 @@ const clubNameColor = Color(0xff4af1f2);
 double clubNameFontSize = 12;
 const posColor = Color(0xffccff00);
 FontWeight posFontWeight = FontWeight.w600;
+double mainPageWidth = 0.11;
+double detailsPageWidth = 0.09;
+double posFontSize = 16;
+FontWeight posDetFontWeight = FontWeight.w900;

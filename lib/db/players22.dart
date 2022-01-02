@@ -58,7 +58,16 @@ class PlayersDatabase {
 
   Future top100Players() async {
     final db = await instance.database;
-    List<Map> li = await db.rawQuery('SELECT * FROM players LIMIT 200');
+    List<Map> li = await db.rawQuery(
+        'SELECT id,sofifa_id,player_url,player_positions,short_name,potential,age,overall,club_name,player_face_url FROM players LIMIT 200');
+    return li;
+  }
+
+  Future getPlayerDetails(var id) async {
+    final db = await instance.database;
+    List<Map> li = await db.rawQuery('''
+    SELECT * FROM players WHERE id=${id};
+    ''');
     return li;
   }
 
