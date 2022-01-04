@@ -39,6 +39,7 @@ class _PlayerCardState extends State<PlayerCard> {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: onTapPlayer,
       child: Padding(
         padding: EdgeInsets.fromLTRB(15, 7, 15, 7),

@@ -1,11 +1,14 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:csv/csv.dart';
+import 'package:fifa_stats/ads/BannerAdSmall.dart';
+import 'package:fifa_stats/ads/ad_helper.dart';
 import 'package:fifa_stats/components/playerCard.dart';
 import 'package:fifa_stats/db/Player.dart';
 import 'package:fifa_stats/db/configureDB.dart';
 import 'package:fifa_stats/db/players22.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'dart:convert' show utf8;
 
 import 'package:flutter/services.dart';
@@ -119,7 +122,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             return PlayerCard(
                               playerData: players[index],
                             );
-                          }))
+                          })),
+                  //BannerSmallAd(),
                 ],
               )
             : Center(

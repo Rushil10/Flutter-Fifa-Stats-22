@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "912109747050",
+    "project_id": "fifa-stats-be849",
+    "storage_bucket": "fifa-stats-be849.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912109747050:android:adda9bda5406c21f61c313",
+        "android_client_info": {
+          "package_name": "com.example.fifa_stats"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912109747050-2p03dpf0v243studkf30qpd5prg4epaj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTFZa-V0cA2EjuuX9KrHZolyLxPxvG12k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912109747050-2p03dpf0v243studkf30qpd5prg4epaj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
