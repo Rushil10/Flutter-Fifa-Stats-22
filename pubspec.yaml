@@ -41,6 +41,7 @@ dev_dependencies:
   csv: ^5.0.1
   spreadsheet_decoder: ^2.0.0
   google_mobile_ads: ^1.0.1
+  flutter_secure_storage: ^5.0.2
   flutter_test:
     sdk: flutter
 
@@ -51,6 +52,10 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
 
+flutter-native-splash:
+  android: true
+  ios: true
+  web: true
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

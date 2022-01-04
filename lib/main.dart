@@ -1,4 +1,6 @@
+import 'package:fifa_stats/db/configureDB.dart';
 import 'package:fifa_stats/screens/HomeScreen.dart';
+import 'package:fifa_stats/screens/SetUpLocalDb.dart';
 import 'package:fifa_stats/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,7 +23,15 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return MaterialApp(
+      title: 'Fifa Stats',
+      themeMode: ThemeMode.dark,
+      darkTheme: ThemeClass.darkTheme,
+      theme: ThemeClass.lightTheme,
+      debugShowCheckedModeBanner: false,
+      home: SetUpLocalDb(),
+    );
+    /* return FutureBuilder(
       future: Init.instance.initialize(),
       builder: (context, AsyncSnapshot snapshot) {
         // Show splash screhile waiting for app resources to load:
@@ -35,15 +45,15 @@ class MyApp extends StatelessWidget {
             darkTheme: ThemeClass.darkTheme,
             theme: ThemeClass.lightTheme,
             debugShowCheckedModeBanner: false,
-            home: HomeScreen(),
+            home: SetUpLocalDb(),
           );
         }
       },
-    );
+    ); */
   }
 }
 
-class Splash extends StatelessWidget {
+/* class Splash extends StatelessWidget {
   const Splash({Key? key}) : super(key: key);
 
   @override
@@ -66,6 +76,6 @@ class Init {
   static final instance = Init._();
 
   Future initialize() async {
-    await Future.delayed(const Duration(seconds: 2));
+    //await Future.delayed(const Duration(seconds: 2));
   }
-}
+} */

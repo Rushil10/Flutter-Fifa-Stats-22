@@ -28,13 +28,19 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     getTop100PlayerData();
+    //checkingDb();
     //setUpDb();
+  }
+
+  void checkingDb() async {
+    var db = await checkDbExists();
+    print(db);
   }
 
   void setUpDb() async {
     var created = await PlayersDatabase.instance.database;
     print(created);
-    createListOfFields();
+    //createListOfFields();
   }
 
   Future getTop100PlayerData() async {

@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:fifa_stats/db/Player.dart';
 import 'package:path/path.dart';
+import 'package:sqflite/src/factory_impl.dart' show databaseFactory;
 import 'package:sqflite/sqflite.dart';
 
 class PlayersDatabase {
@@ -50,10 +51,22 @@ class PlayersDatabase {
     //readDB();
   }
 
+  Future<bool> checkDbExists() async {
+    final dbPath = await getDatabasesPath();
+    final path = join(dbPath, 'players22.db');
+    return databaseFactory.databaseExists(path);
+  }
+
   Future<void> readDb() async {
     final db = await instance.database;
     List<Map> li = await db.query('players');
     print(li.length);
+  }
+
+  Future getNumberOfRows() async {
+    final db = await instance.database;
+    List<Map> li = await db.rawQuery('SELECT id from players');
+    return li.length;
   }
 
   Future top100Players() async {
