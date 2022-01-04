@@ -31,3 +31,4 @@ double detailsPageWidth = 0.09;
 double posFontSize = 16;
 FontWeight posDetFontWeight = FontWeight.w900;
 double playerDetailsRatingFont = 15;
+double ratingWidthDetails = 0.085;

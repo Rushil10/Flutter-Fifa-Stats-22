@@ -3,6 +3,7 @@ import 'package:fifa_stats/components/ClubDetails.dart';
 import 'package:fifa_stats/ads/MediumNativeAd.dart';
 import 'package:fifa_stats/components/GameAttributes.dart';
 import 'package:fifa_stats/components/PlayerDetailsRatingCard.dart';
+import 'package:fifa_stats/components/SkillsRating.dart';
 import 'package:fifa_stats/db/players22.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -58,6 +59,9 @@ class _PlayerDetailsState extends State<PlayerDetails> {
                           MediumNativeAd(),
                           GameAttributes(
                             gameData: playerDetails,
+                          ),
+                          SkillsRating(
+                            skills: playerDetails,
                           )
                         ],
                       )
