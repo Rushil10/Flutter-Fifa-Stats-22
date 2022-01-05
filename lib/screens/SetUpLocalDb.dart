@@ -1,6 +1,9 @@
+import 'package:fifa_stats/ads/BannerAdSmall.dart';
 import 'package:fifa_stats/db/configureDB.dart';
 import 'package:fifa_stats/db/players22.dart';
+import 'package:fifa_stats/screens/BottomTabs.dart';
 import 'package:fifa_stats/screens/HomeScreen.dart';
+import 'package:fifa_stats/utlis/CustomColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -29,8 +32,9 @@ class _SetUpLocalDbState extends State<SetUpLocalDb> {
       setState(() {
         loading = false;
       });
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => BottomTabs()),
+          (Route<dynamic> route) => false);
     } else {
       setState(() {
         loading = false;
@@ -56,8 +60,9 @@ class _SetUpLocalDbState extends State<SetUpLocalDb> {
       setState(() {
         loading = false;
       });
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => BottomTabs()),
+          (Route<dynamic> route) => false);
       return;
     }
     setState(() {
@@ -95,39 +100,93 @@ class _SetUpLocalDbState extends State<SetUpLocalDb> {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Scaffold(
-        body: !loading
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                      margin: EdgeInsets.all(15),
-                      child: LinearProgressIndicator(
-                        value: completed,
-                        minHeight: 12.5,
-                      )),
-                  completed < 1
-                      ? Text(
-                          'Setting Up Players Database',
-                          style: TextStyle(fontSize: 16),
-                        )
-                      : Text(
-                          'Database Setup Completed',
-                          style: TextStyle(fontSize: 16),
+      body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/image.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: !loading
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                            margin: EdgeInsets.all(15),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Player Stats 22',
+                                  style: TextStyle(
+                                    color: posColor,
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Container(
+                                  height: 5,
+                                ),
+                                Text(
+                                  'Storing Over 20000 Players',
+                                  style: TextStyle(
+                                    color: posColor,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ],
+                            )),
+                        Container(
+                            margin: EdgeInsets.all(15),
+                            child: LinearProgressIndicator(
+                              value: completed,
+                              minHeight: 12.5,
+                              color: posColor,
+                            )),
+                        completed < 1
+                            ? Text(
+                                'Setting Up Players Database',
+                                style: TextStyle(fontSize: 16),
+                              )
+                            : Text(
+                                'Database Setup Completed',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                        Container(
+                          height: 9,
                         ),
-                  Container(
-                    height: 9,
+                        Text(percent() + ' % Completed',
+                            style: TextStyle(fontSize: 16)),
+                        Container(
+                          height: 25,
+                        ),
+                        Text(
+                          'App will Work Offline as well',
+                          style: TextStyle(
+                            color: posColor,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    )),
+                    BannerSmallAd(),
+                  ],
+                )
+              : Center(
+                  child: Container(
+                    width: 45,
+                    height: 45,
+                    child: CircularProgressIndicator(
+                      color: posColor,
+                    ),
                   ),
-                  Text(percent() + ' % Completed',
-                      style: TextStyle(fontSize: 16)),
-                ],
-              )
-            : Center(
-                child: Container(
-                  width: 45,
-                  height: 45,
-                  child: CircularProgressIndicator(),
-                ),
-              ));
+                )),
+    );
   }
 }

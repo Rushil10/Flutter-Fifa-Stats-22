@@ -84,6 +84,70 @@ class PlayersDatabase {
     return li;
   }
 
+  Future searchPlayers(var st) async {
+    final db = await instance.database;
+    List<Map> li = await db.rawQuery('''
+    SELECT * FROM players WHERE long_name like '%${st}%' limit 50;
+    ''');
+    return li;
+  }
+
+  Future<bool> checkFav(var id) async {
+    final db = await instance.database;
+    List<Map> li = await db.rawQuery('''
+    SELECT * FROM favourites Where playerId=${id};
+    ''');
+    if (li.length > 0) {
+      return true;
+    }
+    return false;
+  }
+
+  Future getFavourites() async {
+    final db = await instance.database;
+    List<Map> li = await db.rawQuery('''
+    SELECT * FROM players JOIN favourites Where players.id=favourites.playerId
+    ''');
+    //print(li);
+    return li;
+  }
+
+  Future getFreeAgents() async {
+    final db = await instance.database;
+    List<Map> li = await db.rawQuery('''
+    SELECT * FROM players where club_name ="" or club_name is null
+    ''');
+    //print(li);
+    return li;
+  }
+
+  Future getYoungPlayers() async {
+    final db = await instance.database;
+    List<Map> li = await db.rawQuery('''
+    SELECT * FROM players Where age<22 limit 100
+    ''');
+    return li;
+  }
+
+  Future searchFavourites(var id) async {
+    final db = await instance.database;
+    List<Map> li = await db.rawQuery('''
+    SELECT * FROM favourites Where playerId=${id};
+    ''');
+    if (li.length > 0) {
+      await db.execute('''
+      DELETE FROM favourites Where playerId=${id}
+      ''');
+    } else {
+      Map<String, dynamic> fav = {
+        'playerId': id,
+      };
+      final i = await db.insert("favourites", fav);
+      print("Added");
+    }
+    print(li);
+  }
+
   Future _createDB(Database db, int version) async {
     await db.execute('''
 CREATE TABLE players (
@@ -180,6 +244,11 @@ CREATE TABLE players (
         nation_logo_url VARCHAR,
         nation_flag_url VARCHAR NOT NULL
 )
+''');
+    await db.execute('''
+    CREATE TABLE favourites
+    (fid INTEGER PRIMARY KEY,
+    playerId INTEGER)
 ''');
     print("Tabel Created");
   }

@@ -5,6 +5,7 @@ import 'package:fifa_stats/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 //import 'package:native_ads_example/native_ad_view_wrapper.dart';
 
 void main() {
@@ -16,7 +17,7 @@ void main() {
   RequestConfiguration configuration =
       RequestConfiguration(testDeviceIds: testDeviceIds);
   MobileAds.instance.updateRequestConfiguration(configuration);
-  runApp(const MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

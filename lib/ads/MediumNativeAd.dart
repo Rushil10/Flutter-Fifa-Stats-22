@@ -1,3 +1,4 @@
+import 'package:fifa_stats/ads/ad_helper.dart';
 import 'package:fifa_stats/utlis/CustomColors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -22,7 +23,7 @@ class _MediumNativeAdState extends State<MediumNativeAd> {
     _adMedium = NativeAd(
       // Here in adUnitId: add your own ad unit ID before release build
 
-      adUnitId: NativeAd.testAdUnitId,
+      adUnitId: AdHelper.nativeAdUnitId,
       factoryId: 'listTileMedium',
       request: const AdRequest(),
       listener: NativeAdListener(

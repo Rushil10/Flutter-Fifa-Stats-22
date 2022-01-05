@@ -1,19 +1,27 @@
+import 'package:fifa_stats/State/VideoAdState.dart';
 import 'package:fifa_stats/components/AgeRating.dart';
 import 'package:fifa_stats/components/OverallRating.dart';
 import 'package:fifa_stats/components/PotentialRating.dart';
 import 'package:fifa_stats/screens/PlayerDetails.dart';
 import 'package:fifa_stats/utlis/CustomColors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PlayerCard extends StatefulWidget {
+class PlayerCard extends ConsumerStatefulWidget {
   final playerData;
   const PlayerCard({Key? key, this.playerData}) : super(key: key);
 
   @override
-  State<PlayerCard> createState() => _PlayerCardState();
+  ConsumerState<PlayerCard> createState() => _PlayerCardState();
 }
 
-class _PlayerCardState extends State<PlayerCard> {
+class _PlayerCardState extends ConsumerState<PlayerCard> {
+  @override
+  void initState() {
+    super.initState();
+    ref.read(videoAdProvider);
+  }
+
   String playerPositions() {
     String pos = widget.playerData['player_positions'];
     List li = pos.split(",");
@@ -25,13 +33,13 @@ class _PlayerCardState extends State<PlayerCard> {
     return p;
   }
 
-  void onTapPlayer() {
+  void onTapPlayer(var count) {
+    ref.read(videoAdProvider.notifier).increment();
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => PlayerDetails(
-                  player: widget.playerData,
-                )));
+            builder: (context) =>
+                PlayerDetails(player: widget.playerData, count: count)));
   }
 
   @override
@@ -40,7 +48,11 @@ class _PlayerCardState extends State<PlayerCard> {
     queryData = MediaQuery.of(context);
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: onTapPlayer,
+      onTap: () {
+        final count = ref.watch(videoAdProvider);
+        print(count);
+        onTapPlayer(count);
+      },
       child: Padding(
         padding: EdgeInsets.fromLTRB(15, 7, 15, 7),
         child: Row(
@@ -96,12 +108,19 @@ class _PlayerCardState extends State<PlayerCard> {
                   ),
                 ),
                 Align(
-                    alignment: Alignment.centerLeft,
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    constraints:
+                        BoxConstraints(maxWidth: queryData.size.width / 2.1),
                     child: Text(
-                      widget.playerData['club_name'],
+                      widget.playerData['club_name'].length > 0
+                          ? widget.playerData['club_name']
+                          : "Free Agent",
                       style: TextStyle(
                           color: clubNameColor, fontSize: clubNameFontSize),
-                    ))
+                    ),
+                  ),
+                )
               ],
             ),
             Expanded(child: Container()),

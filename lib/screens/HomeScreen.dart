@@ -1,46 +1,37 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:csv/csv.dart';
+import 'package:fifa_stats/State/VideoAdState.dart';
 import 'package:fifa_stats/ads/BannerAdSmall.dart';
 import 'package:fifa_stats/ads/ad_helper.dart';
 import 'package:fifa_stats/components/playerCard.dart';
 import 'package:fifa_stats/db/Player.dart';
 import 'package:fifa_stats/db/configureDB.dart';
 import 'package:fifa_stats/db/players22.dart';
+import 'package:fifa_stats/screens/FavouritesScreen.dart';
+import 'package:fifa_stats/utlis/CustomColors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'dart:convert' show utf8;
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/services.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   var loading = true;
   var players = [];
 
   void initState() {
     super.initState();
+    ref.read(videoAdProvider);
     getTop100PlayerData();
-    //checkingDb();
-    //setUpDb();
-  }
-
-  void checkingDb() async {
-    var db = await checkDbExists();
-    print(db);
-  }
-
-  void setUpDb() async {
-    var created = await PlayersDatabase.instance.database;
-    print(created);
-    //createListOfFields();
   }
 
   Future getTop100PlayerData() async {
@@ -65,23 +56,66 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               const DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: posColor,
                 ),
-                child: Text('Drawer Header'),
+                child: Text(
+                  'Player Stats 22',
+                  style: TextStyle(color: Colors.black, fontSize: 21),
+                ),
               ),
               ListTile(
-                title: const Text('Item 1'),
-                onTap: () {},
+                title: const Text('Favourites'),
+                onTap: () {
+                  final count = ref.watch(videoAdProvider);
+                  print(count);
+                  ref.read(videoAdProvider.notifier).increment();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Favourites(
+                                type: "Fav",
+                                title: "Favourites",
+                                count: count,
+                              )));
+                },
               ),
               ListTile(
-                title: const Text('Item 2'),
-                onTap: () {},
+                title: const Text('Emerging Players'),
+                onTap: () {
+                  final count = ref.watch(videoAdProvider);
+                  print(count);
+                  ref.read(videoAdProvider.notifier).increment();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Favourites(
+                                type: "Young",
+                                title: "Emerging Players",
+                                count: count,
+                              )));
+                },
+              ),
+              ListTile(
+                title: const Text('Free Agents'),
+                onTap: () {
+                  final count = ref.watch(videoAdProvider);
+                  print(count);
+                  ref.read(videoAdProvider.notifier).increment();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Favourites(
+                                type: "Free",
+                                title: "Free Agents",
+                                count: count,
+                              )));
+                },
               ),
             ],
           ),
         ),
         appBar: AppBar(
-          title: Text("Fifa Stats"),
+          title: Text("Player Stats 22"),
         ),
         body: !loading
             ? Column(
@@ -129,11 +163,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               playerData: players[index],
                             );
                           })),
-                  //BannerSmallAd(),
+                  BannerSmallAd(),
                 ],
               )
             : Center(
-                child: Text('Loading'),
+                child: Container(
+                  height: 45,
+                  width: 45,
+                  child: CircularProgressIndicator(
+                    color: posColor,
+                  ),
+                ),
               ));
   }
 }

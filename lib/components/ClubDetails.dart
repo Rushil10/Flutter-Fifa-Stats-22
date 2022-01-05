@@ -20,7 +20,7 @@ class ClubDetails extends StatelessWidget {
       v += "M";
       return v;
     }
-    return val;
+    return val.toString();
   }
 
   @override
@@ -43,19 +43,23 @@ class ClubDetails extends StatelessWidget {
                     fontWeight: FontWeight.w800,
                     color: Colors.black)),
           ),
-          Center(
-            child: Container(
-              padding: EdgeInsets.fromLTRB(0, 9, 0, 9),
-              width: 0.15 * width,
-              height: 0.15 * width,
-              child: Image.network(clubData['club_logo_url']),
-            ),
-          ),
+          clubData['club_logo_url'].length > 0
+              ? Center(
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(0, 9, 0, 9),
+                    width: 0.15 * width,
+                    height: 0.15 * width,
+                    child: Image.network(clubData['club_logo_url']),
+                  ),
+                )
+              : Container(),
           Center(
             child: Container(
               padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Text(
-                clubData['club_name'],
+                clubData['club_name'].length > 0
+                    ? clubData['club_name']
+                    : "Free Agent",
                 style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
               ),
             ),
