@@ -2,6 +2,8 @@
 Fifa 22 Player Stats with various search and filter functionalities.Detailed Stats and comparisons.
 Player Images,Club Images and features to save favourite players.
 
+### https://play.google.com/store/apps/details?id=com.fistat.fifa_stats
+
 ## Images
 <img src="demo_images/1.jpeg" alt="drawing" style="width:250px;"/><img src="demo_images/2.jpeg" alt="drawing" style="width:250px;"/>
 <img src="demo_images/3.jpeg" alt="drawing" style="width:250px;"/>
