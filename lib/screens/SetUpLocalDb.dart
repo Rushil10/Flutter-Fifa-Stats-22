@@ -175,7 +175,7 @@ class _SetUpLocalDbState extends State<SetUpLocalDb> {
                         ),
                       ],
                     )),
-                    BannerSmallAd(),
+                    //BannerSmallAd(),
                   ],
                 )
               : Center(

@@ -8,6 +8,7 @@ import 'package:fifa_stats/components/playerCard.dart';
 import 'package:fifa_stats/db/Player.dart';
 import 'package:fifa_stats/db/configureDB.dart';
 import 'package:fifa_stats/db/players22.dart';
+import 'package:fifa_stats/fb_ads/FBBannerAd.dart';
 import 'package:fifa_stats/screens/FavouritesScreen.dart';
 import 'package:fifa_stats/utlis/CustomColors.dart';
 import 'package:flutter/material.dart';
@@ -163,7 +164,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               playerData: players[index],
                             );
                           })),
-                  BannerSmallAd(),
+                  //BannerSmallAd(),
+                  FBBannerAd()
                 ],
               )
             : Center(

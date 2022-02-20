@@ -31,7 +31,7 @@ class _PlayerDetailsState extends ConsumerState<PlayerDetails> {
     super.initState();
     ref.read(videoAdProvider);
     if (widget.count % 5 == 0) {
-      addInterstitialAd();
+      //addInterstitialAd();
     }
     getPlayerData();
     checkIfFav();
@@ -116,7 +116,7 @@ class _PlayerDetailsState extends ConsumerState<PlayerDetails> {
                           ClubDetails(
                             clubData: playerDetails,
                           ),
-                          MediumNativeAd(),
+                          //MediumNativeAd(),
                           GameAttributes(
                             gameData: playerDetails,
                           ),
@@ -130,7 +130,7 @@ class _PlayerDetailsState extends ConsumerState<PlayerDetails> {
                           child: Text('Loading'),
                         ),
                       ))),
-        BannerSmallAd(),
+        //BannerSmallAd(),
       ]),
     );
   }
