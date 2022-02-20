@@ -1,16 +1,17 @@
-# fifa_stats
+# Fifa 22 Player Stats
+Fifa 22 Player Stats with various search and filter functionalities.Detailed Stats and comparisons.
+Player Images,Club Images and features to save favourite players.
 
-A new Flutter project.
+### https://play.google.com/store/apps/details?id=com.fistat.fifa_stats
 
-## Getting Started
+## Images
+<img src="demo_images/1.jpeg" alt="drawing" style="width:250px;"/><img src="demo_images/2.jpeg" alt="drawing" style="width:250px;"/>
+<img src="demo_images/3.jpeg" alt="drawing" style="width:250px;"/>
+<img src="demo_images/4.jpeg" alt="drawing" style="width:250px;"/>
+<img src="demo_images/5.jpeg" alt="drawing" style="width:250px;"/>
+<img src="demo_images/6.jpeg" alt="drawing" style="width:250px;"/>
+<img src="demo_images/7.jpeg" alt="drawing" style="width:250px;"/>
+<img src="demo_images/8.jpeg" alt="drawing" style="width:250px;"/>
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Ads integrated using Admob
+FLutter App
