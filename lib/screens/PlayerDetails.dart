@@ -116,7 +116,7 @@ class _PlayerDetailsState extends ConsumerState<PlayerDetails> {
                           ClubDetails(
                             clubData: playerDetails,
                           ),
-                          //MediumNativeAd(),
+                          MediumNativeAd(),
                           GameAttributes(
                             gameData: playerDetails,
                           ),
