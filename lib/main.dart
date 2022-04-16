@@ -9,14 +9,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 //import 'package:native_ads_example/native_ad_view_wrapper.dart';
 
 void main() {
-  List<String> testDeviceIds = ['E25EE02DA7817F620865558627D4F3E0'];
+  //List<String> testDeviceIds = ['E25EE02DA7817F620865558627D4F3E0'];
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
   MobileAds.instance.initialize();
-  RequestConfiguration configuration =
-      RequestConfiguration(testDeviceIds: testDeviceIds);
-  MobileAds.instance.updateRequestConfiguration(configuration);
   runApp(ProviderScope(child: MyApp()));
 }
 
