@@ -238,12 +238,9 @@ CREATE TABLE players (
         cf VARCHAR NOT NULL,
         rf VARCHAR NOT NULL,
         rw VARCHAR NOT NULL,
-        club_flag_url VARCHAR,
         player_face_url VARCHAR,
         club_logo_url VARCHAR,
-        nation_logo_url VARCHAR,
-        nation_flag_url VARCHAR NOT NULL
-)
+        nation_flag_url VARCHAR )
 ''');
     await db.execute('''
     CREATE TABLE favourites

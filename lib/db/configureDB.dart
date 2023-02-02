@@ -19,11 +19,11 @@ Future<bool> checkDbExists() async {
 
 void createListOfFields(int start, Function f) async {
   //print(cur);
-  final mydata = await rootBundle.loadString('assets/images/players_22.csv');
+  final mydata = await rootBundle.loadString('assets/images/players_23.csv');
   final con = await CsvToListConverter().convert(mydata);
   int j = 0;
   print(con[1][0].runtimeType);
-  for (int i = start; i < 19240; i++) {
+  for (int i = start; i < 18000; i++) {
     var player = Player(
       sofifaId: con[i][j++],
       playerUrl: con[i][j++],
@@ -127,10 +127,8 @@ void createListOfFields(int start, Function f) async {
       rf: con[i][j].runtimeType != String ? con[i][j++] : (j++ - j - 1),
       rw: con[i][j].runtimeType != String ? con[i][j++] : (j++ - j - 1),
       playerFaceUrl: con[i][105],
-      clubLogoUrl: con[i][106],
-      clubFlagUrl: con[i][107],
-      nationLogoUrl: con[i][108],
-      nationFlagUrl: con[i][109],
+      clubLogoUrl: con[i][107],
+      nationFlagUrl: con[i][106],
     );
     await PlayersDatabase.instance.insertPlayer(player);
     j = 0;
